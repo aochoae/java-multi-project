@@ -1,0 +1,39 @@
+plugins {
+    id 'application'
+}
+
+ext {
+    mainClass = "com.example.application.Application"
+}
+
+dependencies {
+
+    implementation project(':application-library')
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
+}
+
+application {
+    mainClassName = '${mainClass}'
+}
+
+task uberJar(type: Jar) {
+    archiveClassifier = 'uber'
+
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+
+    manifest {
+        attributes 'Main-Class': '${mainClass}'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
