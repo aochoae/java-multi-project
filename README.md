@@ -5,3 +5,10 @@
     gradle application:run
 
 ## Build
+
+    gradle application:build
+
+Uber
+
+    gradle application:uberJar
+
