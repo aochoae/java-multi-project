@@ -4,15 +4,23 @@ plugins {
 
 dependencies {
 
-    implementation project(':application-library')
+    implementation project(':library')
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
-
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
 }
 
 application {
     mainClass = 'com.example.application.Application'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class' : 'com.example.application.Application',
+                'Class-Path' : 'library-1.0.0.jar'
+        )
+    }
 }
 
 task uberJar(type: Jar) {
@@ -22,7 +30,11 @@ task uberJar(type: Jar) {
 
     dependsOn configurations.runtimeClasspath
     from {
-        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+        configurations.runtimeClasspath.findAll {
+            it.name.endsWith('jar')
+        }.collect {
+            zipTree(it)
+        }
     }
 
     manifest {

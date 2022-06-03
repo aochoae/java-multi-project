@@ -1,4 +1,4 @@
-package dev.luisalberto.application;
+package com.example.library;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ApplicationTest {
 
     @Test
-    public void appHasAGreeting() {
+    public void testTrue() {
     	assertTrue(true);
     }
 }

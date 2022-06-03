@@ -1,14 +1,14 @@
 subprojects {
 
     apply plugin: 'java'
-    apply plugin: 'eclipse-wtp'
+    apply plugin: 'eclipse'
     apply plugin: 'idea'
 
     group = 'com.example.application'
-    version = '1.0.0-SNAPSHOT'
+    version = '1.0.0'
 
     ext {
-        junitJupiterVersion = '5.5.1'
+        junitJupiterVersion = '5.8.2'
     }
 
     java {
@@ -18,6 +18,5 @@ subprojects {
 
     repositories {
         mavenCentral()
-        jcenter()
     }
 }

@@ -1,4 +1,4 @@
-rootProject.name = 'multi-project'
+rootProject.name = 'java-multi-project'
 
 include 'application'
-include 'application-library'
+include 'library'
